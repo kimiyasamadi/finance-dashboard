@@ -1,0 +1,42 @@
+<div class="sidebar w-60 bg-gray-900 text-white flex flex-col justify-between h-full">
+  <div class="logo p-4 flex items-center">
+    <mat-icon class="text-teal-400 mr-4">home</mat-icon>
+    <h1 class="text-lg font-bold pt-4 text-teal-400">Dashboard</h1>
+  </div>
+
+  <nav class="menu flex-1">
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let item of menuItems"
+        [routerLink]="item.route"
+        class="text-white hover:bg-teal-300"
+      >
+        <div class="flex">
+          <mat-icon class="mr-4 text-white">{{ item.icon }}</mat-icon>
+          <span class="text-sm text-white">{{ item.label }}</span>
+        </div>
+      </a>
+    </mat-nav-list>
+  </nav>
+
+  <div class="user-info p-4 text-center">
+    <a
+      class="logout flex items-center justify-center bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600"
+      [routerLink]="'/logout'"
+    >
+      <mat-icon class="mr-2">logout</mat-icon>
+      <span>Logout</span>
+    </a>
+    <div class="profile mt-4">
+      <p class="font-semibold">Tanzir Rahman</p>
+      <a
+        [routerLink]="'/profile'"
+        class="text-sm text-gray-400 hover:underline"
+      >
+        View profile
+      </a>
+    </div>
+  </div>
+</div>
+
