@@ -1,1 +1,82 @@
-<p>transactions works!</p>
+<div class="transactions-container h-screen flex">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content -->
+  <div class="content bg-gray-100 p-6 flex-1">
+    <h1 class="text-xl text-gray-500 mb-6">Recent Transactions</h1>
+    <mat-card class="p-4 bg-white shadow-md ">
+      <mat-card-content>
+        <table
+          mat-table
+          [dataSource]="transactions"
+          class="w-full bg-transparent "
+          role="table"
+        >
+          <!-- Icon Column -->
+          <ng-container matColumnDef="icon">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let transaction">
+              <mat-icon class="text-gray-600">{{ transaction.icon }}</mat-icon>
+            </td>
+          </ng-container>
+
+          <!-- Item Column -->
+          <ng-container matColumnDef="item">
+            <th mat-header-cell *matHeaderCellDef>Items</th>
+            <td mat-cell *matCellDef="let transaction" class="text-gray-500">
+              {{ transaction.item }}
+            </td>
+          </ng-container>
+
+          <!-- Shop Name Column -->
+          <ng-container matColumnDef="shop">
+            <th mat-header-cell *matHeaderCellDef>Shop Name</th>
+            <td mat-cell *matCellDef="let transaction" class="text-gray-500">
+              {{ transaction.shop }}
+            </td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let transaction" class="text-gray-500">
+              {{ transaction.date }}
+            </td>
+          </ng-container>
+
+          <!-- Payment Method Column -->
+          <ng-container matColumnDef="method">
+            <th mat-header-cell *matHeaderCellDef>Payment Method</th>
+            <td mat-cell *matCellDef="let transaction" class="text-gray-500">
+              {{ transaction.method }}
+            </td>
+          </ng-container>
+
+          <!-- Amount Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let transaction" class="font-bold text-gray-800">
+              $ {{ transaction.amount | number : '1.2-2' }}
+            </td>
+          </ng-container>
+
+          <!-- Row Definitions -->
+          <tr mat-header-row *matHeaderRowDef="['icon', 'item', 'shop', 'date', 'method', 'amount']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['icon', 'item', 'shop', 'date', 'method', 'amount']"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Load More Button -->
+    <div class="flex justify-center mt-6">
+      <button
+        mat-raised-button
+        color="primary"
+        class="bg-teal-500 hover:bg-teal-600 text-white"
+      >
+        Load More
+      </button>
+    </div>
+  </div>
+</div>
