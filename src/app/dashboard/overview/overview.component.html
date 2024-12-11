@@ -16,92 +16,92 @@
     </header>
 
     <!-- Widgets Section -->
-    <mat-grid-list cols="3" rowHeight="fit" gutterSize="16px" class="widgets">
+    <div class="widgets grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Total Balance Widget -->
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Total Balance</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p class="text-2xl font-bold text-gray-800">${{ totalBalance }}</p>
-            <p class="text-sm text-gray-500">All Accounts</p>
-            <div class="bg-teal-100 p-4 mt-4 rounded">
-              <p>Account Type: {{ accountType }}</p>
-              <p class="font-bold">$ {{ accountBalance }}</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
+      <mat-card class="p-4 bg-white shadow-md rounded-lg">
+        <mat-card-header>
+          <mat-card-title>Total Balance</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="text-2xl font-bold text-gray-800">${{ totalBalance }}</p>
+          <p class="text-sm text-gray-500">All Accounts</p>
+          <div class="bg-teal-100 p-4 mt-4 rounded">
+            <p>Account Type: {{ accountType }}</p>
+            <p class="font-bold">$ {{ accountBalance }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
 
       <!-- Goals Widget -->
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Goals</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
+      <mat-card class="p-4 bg-white shadow-md rounded-lg">
+        <mat-card-header>
+          <mat-card-title class="text-lg font-bold text-gray-800 flex items-center justify-between">
+            <span>Goals</span>
+            <button mat-icon-button>
+              <mat-icon class="text-gray-500">edit</mat-icon>
+            </button>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="flex items-center justify-between mb-4">
             <p class="text-2xl font-bold text-gray-800">$ {{ goals.target }}</p>
-            <p class="text-sm text-gray-500">
-              Target Achieved: $ {{ goals.targetAchieved }}
-            </p>
-            <mat-progress-bar mode="determinate" [value]="(goals.targetAchieved / goals.target) * 100"></mat-progress-bar>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
+            <canvas id="gaugeChart" width="120" height="120"></canvas>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-teal-500 mr-2">military_tech</mat-icon>
+            <div>
+              <p class="text-sm text-gray-500">Target Achieved</p>
+              <p class="text-lg font-bold text-gray-800">$ {{ goals.targetAchieved }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
 
       <!-- Upcoming Bills Widget -->
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Upcoming Bills</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div *ngFor="let bill of upcomingBills" class="flex justify-between items-center text-sm text-gray-600">
-              <div>
-                <p>{{ bill.name }}</p>
-                <p>{{ bill.date }}</p>
-              </div>
-              <p>$ {{ bill.amount }}</p>
+      <mat-card class="p-4 bg-white shadow-md rounded-lg">
+        <mat-card-header>
+          <mat-card-title>Upcoming Bills</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let bill of upcomingBills" class="flex justify-between items-center text-sm text-gray-600">
+            <div>
+              <p>{{ bill.name }}</p>
+              <p>{{ bill.date }}</p>
             </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+            <p>$ {{ bill.amount }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-    <!-- Recent Transactions and Statistics -->
-    <mat-grid-list cols="2" rowHeight="fit" gutterSize="16px" class="mt-8">
+    <!-- Recent Transactions and Weekly Chart Section -->
+    <div class="widgets grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
       <!-- Recent Transactions -->
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Recent Transactions</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div *ngFor="let transaction of recentTransactions" class="flex justify-between text-sm text-gray-600">
-              <p>{{ transaction.name }}</p>
-              <p>$ {{ transaction.amount }}</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
+      <mat-card class="p-4 bg-white shadow-md rounded-lg">
+        <mat-card-header>
+          <mat-card-title>Recent Transactions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let transaction of recentTransactions" class="flex justify-between text-sm text-gray-600">
+            <p>{{ transaction.name }}</p>
+            <p>$ {{ transaction.amount }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
 
-      <!-- Statistics Widget -->
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Statistics</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <!-- Chart.js Canvas -->
-            <canvas id="statisticsChart" width="400" height="200"></canvas>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list> <!-- Closing the mat-grid-list here -->
+      <!-- Weekly Statistics Chart -->
+      <mat-card class="p-4 bg-white shadow-md rounded-lg">
+        <mat-card-header>
+          <mat-card-title>Weekly Comparison</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <canvas id="statisticsChart" width="400" height="200"></canvas>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
     <!-- Expenses Breakdown -->
-    <mat-card class="mt-8">
+    <mat-card class="p-4 bg-white shadow-md rounded-lg mt-8">
       <mat-card-header>
         <mat-card-title>Expenses Breakdown</mat-card-title>
       </mat-card-header>
@@ -112,6 +112,5 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div> <!-- Closing content div -->
+  </div>
 </div>
-

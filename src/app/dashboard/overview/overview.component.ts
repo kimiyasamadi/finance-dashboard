@@ -87,31 +87,47 @@ export class OverviewComponent implements AfterViewInit {
           labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
           datasets: [
             {
-              label: 'Weekly Earnings',
+              label: 'This Week',
               data: this.weeklyStatistics,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1
-            }
-          ]
+              backgroundColor: 'rgba(41, 157, 145, 0.2)', // Tailwind Primary color (light)
+              borderColor: '#299D91', // Tailwind Primary color
+              borderWidth: 1,
+            },
+            {
+              label: 'Last Week',
+              data: [4000, 10000, 15000, 10000, 16000, 20000, 18000],
+              backgroundColor: 'rgba(82, 82, 86, 0.2)', // Tailwind Secondary color (light)
+              borderColor: '#525256', // Tailwind Secondary color
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: true,
-              position: 'top'
+              position: 'top',
             },
-            tooltip: {
-              enabled: true
-            }
           },
           scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Days',
+                color: '#525256', // Tailwind Secondary text color
+              },
+            },
             y: {
-              beginAtZero: true
-            }
-          }
-        }
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Revenue',
+                color: '#525256', // Tailwind Secondary text color
+              },
+            },
+          },
+        },
       });
     } else {
       console.error('Canvas element not found');
