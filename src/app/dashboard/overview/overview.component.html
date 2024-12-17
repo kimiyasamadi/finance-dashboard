@@ -1,10 +1,8 @@
 <div class="overview-container h-screen w-full overflow-hidden flex">
-  <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
-  <!-- Main Content -->
   <div class="content bg-gray-100 p-8 overflow-y-auto rounded-2xl flex-1">
-    <!-- Header -->
+
     <header class="flex justify-between items-center mb-8">
       <div>
         <h1 class="text-xl font-bold">Hello {{ userName }}</h1>
@@ -15,9 +13,8 @@
       </button>
     </header>
 
-    <!-- Widgets Section -->
     <div class="widgets grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Total Balance Widget -->
+
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
         <mat-card-header>
           <mat-card-title>Total Balance</mat-card-title>
@@ -32,7 +29,6 @@
         </mat-card-content>
       </mat-card>
 
-      <!-- Goals Widget -->
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
         <mat-card-header>
           <mat-card-title class="text-lg font-bold text-gray-800 flex items-center justify-between">
@@ -57,7 +53,6 @@
         </mat-card-content>
       </mat-card>
 
-      <!-- Upcoming Bills Widget -->
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
         <mat-card-header>
           <mat-card-title>Upcoming Bills</mat-card-title>
@@ -74,7 +69,6 @@
       </mat-card>
     </div>
 
-    <!-- Recent Transactions and Weekly Chart Section -->
     <div class="widgets grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
       <!-- Recent Transactions -->
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
@@ -89,7 +83,6 @@
         </mat-card-content>
       </mat-card>
 
-      <!-- Weekly Statistics Chart -->
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
         <mat-card-header>
           <mat-card-title>Weekly Comparison</mat-card-title>
@@ -100,7 +93,6 @@
       </mat-card>
     </div>
 
-    <!-- Expenses Breakdown -->
     <mat-card class="p-4 bg-white shadow-md rounded-lg mt-8">
       <mat-card-header>
         <mat-card-title>Expenses Breakdown</mat-card-title>

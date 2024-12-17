@@ -1,1 +1,45 @@
-<p>expenses works!</p>
+<div class="expenses-container h-screen w-full overflow-hidden flex">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content -->
+  <div class="content bg-gray-100 p-8 overflow-y-auto rounded-2xl flex-1">
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-8">
+      <h1 class="text-xl font-bold text-gray-500">Expenses Comparison</h1>
+      <button mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </header>
+
+    <!-- Monthly Comparison Chart -->
+    <mat-card class="shadow-md rounded-lg p-6 mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-gray-800">Monthly Comparison</h2>
+        <mat-icon class="text-gray-500">bar_chart</mat-icon>
+      </div>
+      <canvas id="expensesChart" height="120"></canvas>
+    </mat-card>
+
+    <!-- Expenses Breakdown -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Expense Card -->
+      <mat-card class="shadow-md rounded-lg p-4" *ngFor="let expense of expenses">
+        <div class="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
+          <h3 class="text-md font-bold text-gray-800">{{ expense.category }}</h3>
+          <mat-icon class="text-gray-600">{{ expense.icon }}</mat-icon>
+        </div>
+        <mat-card-content>
+          <p class="text-2xl font-bold text-gray-800 mt-2">${{ expense.total }}</p>
+          <p class="text-sm text-gray-500">Compare to last month</p>
+          <div class="text-sm mt-2">
+            <div *ngFor="let detail of expense.details" class="flex justify-between mt-1">
+              <span>{{ detail.name }}</span>
+              <span class="font-bold">${{ detail.amount }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

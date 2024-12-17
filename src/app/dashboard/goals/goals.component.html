@@ -1,1 +1,44 @@
-<p>goals works!</p>
+<div class="goals-container h-screen w-full overflow-hidden flex">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content -->
+  <div class="content bg-gray-100 p-8 overflow-y-auto rounded-2xl flex-1">
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-8">
+      <h1 class="text-xl font-bold text-gray-500">Goals</h1>
+      <button mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </header>
+
+    <!-- Saving Summary Chart -->
+    <mat-card class="shadow-md rounded-lg p-6 mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-gray-800">Saving Summary</h2>
+        <mat-icon class="text-gray-500">show_chart</mat-icon>
+      </div>
+      <canvas id="savingSummaryChart" height="120"></canvas>
+    </mat-card>
+
+    <!-- Expenses Goals by Category -->
+    <h2 class="text-lg font-bold mb-4 text-gray-500">Expenses Goals by Category</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <mat-card
+        class="shadow-md rounded-lg border border-gray-300"
+        *ngFor="let goal of expenseGoals">
+        <div class=" rounded-t-lg p-2 flex items-center justify-between">
+          <mat-icon class="text-gray-600 bg-gray-200 rounded-md">{{ goal.icon }}</mat-icon>
+        </div>
+        <mat-card-content class="p-4 flex justify-between items-center">
+          <h3 class="text-md font-bold text-gray-500">{{ goal.category }}</h3>
+          <p class="text-2xl font-bold text-gray-800">${{ goal.amount }}</p>
+          <button mat-button class="flex items-center border border-teal-500 rounded-md px-4 py-1 text-teal-500 hover:bg-teal-50">
+            <span class="mr-1 font-semibold">Adjust</span>
+            <mat-icon class="text-teal-500">edit</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
