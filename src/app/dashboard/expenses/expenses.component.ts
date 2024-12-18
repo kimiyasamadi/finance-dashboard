@@ -2,7 +2,7 @@ import {AfterViewInit, Component} from '@angular/core';
 import {SidebarComponent} from '../../shared/sidebar/sidebar.component';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {MatCard, MatCardContent} from '@angular/material/card';
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {isPlatformBrowser, NgForOf} from '@angular/common';
 import Chart from 'chart.js/auto';
 import { Inject, PLATFORM_ID } from '@angular/core';
@@ -12,13 +12,14 @@ import {registerables} from 'chart.js';
   selector: 'app-expenses',
   standalone: true,
   imports: [
-
+    MatCardTitle,
     SidebarComponent,
     MatIconButton,
     MatIcon,
     MatCard,
     NgForOf,
-    MatCardContent
+    MatCardContent,
+    MatCardHeader
   ],
   templateUrl: './expenses.component.html',
   styleUrls: ['./expenses.component.scss']
@@ -88,6 +89,8 @@ export class ExpensesComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeExpensesChart();
+    }else {
+      console.error('Document is not defined. Chart cannot be initialized.');
     }
   }
 

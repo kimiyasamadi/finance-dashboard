@@ -13,12 +13,18 @@
     </header>
 
     <!-- Monthly Comparison Chart -->
-    <mat-card class="shadow-md rounded-lg p-6 mb-8">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-bold text-gray-800">Monthly Comparison</h2>
-        <mat-icon class="text-gray-500">bar_chart</mat-icon>
-      </div>
-      <canvas id="expensesChart" height="120"></canvas>
+    <mat-card class="p-4 mb-8 bg-white shadow-md rounded-lg">
+      <!-- Card Header -->
+      <mat-card-header>
+        <mat-card-title class="flex items-center justify-between">
+          <span>Monthly Comparison</span>
+        </mat-card-title>
+      </mat-card-header>
+
+      <!-- Card Content -->
+      <mat-card-content>
+        <canvas id="expensesChart" height="200"></canvas>
+      </mat-card-content>
     </mat-card>
 
     <!-- Expenses Breakdown -->

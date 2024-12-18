@@ -4,19 +4,21 @@ import { Chart, registerables } from 'chart.js';
 import {SidebarComponent} from '../../shared/sidebar/sidebar.component';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {MatCard, MatCardContent} from '@angular/material/card';
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 
 @Component({
   selector: 'app-goals',
   standalone: true,
   imports: [
+    MatCardTitle,
     SidebarComponent,
     MatIconButton,
     MatIcon,
     MatCard,
     NgForOf,
     MatCardContent,
-    MatButton
+    MatButton,
+    MatCardHeader
   ],
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.scss']
