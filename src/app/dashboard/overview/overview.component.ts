@@ -35,9 +35,13 @@ export class OverviewComponent implements AfterViewInit {
   userName = 'Tanzir';
   currentDate = new Date().toDateString();
 
-  totalBalance = 240399;
-  accountType = 'Credit Card';
-  accountBalance = 25000;
+  accountDetails = {
+    totalBalance: 240399,
+    accountType: 'Credit Card',
+    accountBalance: 25000,
+    accountNumber: '3388 4556 8860 8***',
+    logo: 'assets/icons/Icon.svg',
+  };
 
   goals = {
     targetAchieved: 12500,

@@ -8,6 +8,7 @@ import {TransactionsComponent} from './dashboard/transactions/transactions.compo
 import {BillsComponent} from './dashboard/bills/bills.component';
 import {ExpensesComponent} from './dashboard/expenses/expenses.component';
 import {GoalsComponent} from './dashboard/goals/goals.component';
+import {SettingsComponent} from './dashboard/settings/settings.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,4 +20,5 @@ export const routes: Routes = [
   { path: 'bills', component: BillsComponent},
   {path: 'expenses', component: ExpensesComponent},
   {path: 'goals', component: GoalsComponent},
+  {path: 'settings', component: SettingsComponent},
 ];

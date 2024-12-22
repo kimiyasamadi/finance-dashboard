@@ -16,23 +16,34 @@
     <div class="widgets grid grid-cols-1 lg:grid-cols-3 gap-6">
 
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
-        <mat-card-header>
-          <mat-card-title>Total Balance</mat-card-title>
+        <h1 class="text-xl font-bold text-gray-500">Total Balance</h1>
+        <mat-card-header class="mb-4">
+          <mat-card-title>
+            <div class="flex justify-between">
+            <p class="text-2xl text-gray-800 font-bold">${{accountDetails.totalBalance}}</p>
+            <p class="text-sm text-gray-500 pl-32 pt-1 ">All Accounts</p>
+          </div>
+          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p class="text-2xl font-bold text-gray-800">${{ totalBalance }}</p>
-          <p class="text-sm text-gray-500">All Accounts</p>
-          <div class="bg-teal-100 p-4 mt-4 rounded">
-            <p>Account Type: {{ accountType }}</p>
-            <p class="font-bold">$ {{ accountBalance }}</p>
+          <div class="bg-teal-500 p-4 mt-2 rounded">
+            <div>
+              <img [src]="accountDetails.logo" alt="{{accountDetails.accountType}}">
+            </div>
+            <p class=" text-white text-lg font-bold">{{ accountDetails.accountType }}</p>
+            <div class="flex justify-between text-white">
+              <p class="text-gray-200">{{accountDetails.accountNumber}}</p>
+              <p class="font-bold">${{accountDetails.accountBalance}}</p>
+            </div>
           </div>
+
         </mat-card-content>
       </mat-card>
 
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
+        <h1 class="text-xl font-bold text-gray-500">Goals</h1>
         <mat-card-header>
           <mat-card-title class="text-lg font-bold text-gray-800 flex items-center justify-between">
-            <span>Goals</span>
             <button mat-icon-button>
               <mat-icon class="text-gray-500">edit</mat-icon>
             </button>
@@ -54,16 +65,15 @@
       </mat-card>
 
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
-        <mat-card-header>
-          <mat-card-title>Upcoming Bills</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+        <h1 class="text-xl font-bold text-gray-500">Upcoming bills</h1>
+
+        <mat-card-content class="mt-4">
           <div *ngFor="let bill of upcomingBills" class="flex justify-between items-center text-sm text-gray-600">
             <div>
-              <p>{{ bill.name }}</p>
-              <p>{{ bill.date }}</p>
+              <p class="text-gray-800">{{ bill.name }}</p>
+              <p class="text-gray-500">{{ bill.date }}</p>
             </div>
-            <p>$ {{ bill.amount }}</p>
+            <p class="text-gray-800 font-bold">$ {{ bill.amount }}</p>
           </div>
         </mat-card-content>
       </mat-card>
@@ -72,19 +82,19 @@
     <div class="widgets grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
       <!-- Recent Transactions -->
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
-        <mat-card-header>
+        <mat-card-header class="mb-8">
           <mat-card-title>Recent Transactions</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div *ngFor="let transaction of recentTransactions" class="flex justify-between text-sm text-gray-600">
             <p>{{ transaction.name }}</p>
-            <p>$ {{ transaction.amount }}</p>
+            <p class="font-bold text-gray-800">$ {{ transaction.amount }}</p>
           </div>
         </mat-card-content>
       </mat-card>
 
       <mat-card class="p-4 bg-white shadow-md rounded-lg">
-        <mat-card-header>
+        <mat-card-header class="mb-8">
           <mat-card-title>Weekly Comparison</mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -94,7 +104,7 @@
     </div>
 
     <mat-card class="p-4 bg-white shadow-md rounded-lg mt-8">
-      <mat-card-header>
+      <mat-card-header class="mb-8">
         <mat-card-title>Expenses Breakdown</mat-card-title>
       </mat-card-header>
       <mat-card-content>
