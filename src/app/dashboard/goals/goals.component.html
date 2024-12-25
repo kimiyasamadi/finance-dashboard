@@ -1,10 +1,7 @@
 <div class="goals-container h-screen w-full overflow-hidden flex">
-  <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
-  <!-- Main Content -->
   <div class="content bg-gray-100 p-8 overflow-y-auto rounded-2xl flex-1">
-    <!-- Header -->
     <header class="flex justify-between items-center mb-8">
       <h1 class="text-xl font-bold text-gray-500">Goals</h1>
       <button mat-icon-button>
@@ -12,23 +9,19 @@
       </button>
     </header>
 
-    <!-- Saving Summary Chart -->
     <mat-card class="p-4 mb-8 bg-white shadow-md rounded-lg">
-      <!-- Card Header -->
       <mat-card-header>
         <mat-card-title class="flex items-center justify-between">
           <span>Saving Summary</span>
         </mat-card-title>
       </mat-card-header>
 
-      <!-- Card Content -->
       <mat-card-content>
         <canvas id="savingSummaryChart" height="200"></canvas>
       </mat-card-content>
     </mat-card>
 
 
-    <!-- Expenses Goals by Category -->
     <h2 class="text-lg font-bold mb-4 text-gray-500">Expenses Goals by Category</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <mat-card

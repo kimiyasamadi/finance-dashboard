@@ -1,10 +1,7 @@
 <div class="expenses-container h-screen w-full overflow-hidden flex">
-  <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
-  <!-- Main Content -->
   <div class="content bg-gray-100 p-8 overflow-y-auto rounded-2xl flex-1">
-    <!-- Header -->
     <header class="flex justify-between items-center mb-8">
       <h1 class="text-xl font-bold text-gray-500">Expenses Comparison</h1>
       <button mat-icon-button>
@@ -12,24 +9,19 @@
       </button>
     </header>
 
-    <!-- Monthly Comparison Chart -->
     <mat-card class="p-4 mb-8 bg-white shadow-md rounded-lg">
-      <!-- Card Header -->
       <mat-card-header>
         <mat-card-title class="flex items-center justify-between">
           <span>Monthly Comparison</span>
         </mat-card-title>
       </mat-card-header>
 
-      <!-- Card Content -->
       <mat-card-content>
         <canvas id="expensesChart" height="200"></canvas>
       </mat-card-content>
     </mat-card>
 
-    <!-- Expenses Breakdown -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Expense Card -->
       <mat-card class="shadow-md rounded-lg p-4" *ngFor="let expense of expenses">
         <div class="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
           <h3 class="text-md font-bold text-gray-800">{{ expense.category }}</h3>

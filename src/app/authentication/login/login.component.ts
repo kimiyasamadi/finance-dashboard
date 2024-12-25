@@ -41,7 +41,7 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.email === this.mockUser.email && this.password === this.mockUser.password) {
-      this.errorMessage = ''; // Clear error message
+      this.errorMessage = '';
       this.router.navigate(['/sidebar']);
     } else {
       console.error('Authentication failed: Invalid email or password');

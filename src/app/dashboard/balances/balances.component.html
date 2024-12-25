@@ -1,12 +1,9 @@
 <div class="balances-container h-screen w-full flex">
-  <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
-  <!-- Main Content -->
   <div class="content bg-gray-100 p-8 overflow-y-auto flex-1">
     <h1 class="text-xl text-gray-500 mb-6">Balances</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Balance Cards -->
       <mat-card *ngFor="let balance of balances" class="p-4 bg-white shadow-md rounded-lg">
         <div class="flex justify-between">
             <h3 class="text-lg font-semibold text-gray-700">{{ balance.type }}</h3>
@@ -26,7 +23,6 @@
         </div>
       </mat-card>
 
-      <!-- Add Accounts Card -->
       <mat-card class="p-4 bg-gray-100 shadow-md rounded-lg flex flex-col justify-center items-center">
         <button mat-raised-button color="primary" class="w-3/5">Add Accounts</button>
         <p class="pt-6 text-sm text-gray-500">Edit Accounts</p>

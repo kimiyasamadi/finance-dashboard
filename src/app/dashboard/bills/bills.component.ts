@@ -24,18 +24,18 @@ export class BillsComponent {
     {
       name: 'Figma - Yearly Plan',
       description: 'For advanced security and more flexible controls.',
-      dueDate: new Date(2024, 4, 15), // May 15, 2024
-      lastCharge: new Date(2023, 4, 14), // May 14, 2023
+      dueDate: new Date(2024, 4, 15),
+      lastCharge: new Date(2023, 4, 14),
       amount: 150,
-      logo: 'assets/icons/Figma.svg', // Path to Figma logo SVG
+      logo: 'assets/icons/Figma.svg',
     },
     {
       name: 'Adobe Inc - Yearly Plan',
       description: 'For advanced security and more flexible controls.',
-      dueDate: new Date(2024, 5, 16), // June 16, 2024
-      lastCharge: new Date(2023, 5, 17), // June 17, 2023
+      dueDate: new Date(2024, 5, 16),
+      lastCharge: new Date(2023, 5, 17),
       amount: 559,
-      logo: 'assets/icons/Adobe.svg', // Path to Adobe logo SVG
+      logo: 'assets/icons/Adobe.svg',
     },
   ];
 }
