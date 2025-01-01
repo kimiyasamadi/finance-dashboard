@@ -9,16 +9,18 @@ import {BillsComponent} from './dashboard/bills/bills.component';
 import {ExpensesComponent} from './dashboard/expenses/expenses.component';
 import {GoalsComponent} from './dashboard/goals/goals.component';
 import {SettingsComponent} from './dashboard/settings/settings.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent },
-  { path: 'sidebar', component: SidebarComponent},
-  { path: 'overview', component: OverviewComponent},
-  { path: 'balances', component: BalancesComponent},
-  { path: 'transactions', component: TransactionsComponent},
-  { path: 'bills', component: BillsComponent},
-  {path: 'expenses', component: ExpensesComponent},
-  {path: 'goals', component: GoalsComponent},
-  {path: 'settings', component: SettingsComponent},
+  { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard]},
+  { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard]},
+  { path: 'balances', component: BalancesComponent, canActivate: [AuthGuard]},
+  { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard]},
+  { path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
+  {path: 'expenses', component: ExpensesComponent, canActivate: [AuthGuard]},
+  {path: 'goals', component: GoalsComponent, canActivate: [AuthGuard]},
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
