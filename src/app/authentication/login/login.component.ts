@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -26,38 +26,58 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
   rememberMe: boolean = false;
   hidePassword: boolean = true;
-  errorMessage: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  private readonly TOKEN_URL = 'http://217.197.97.50:8080/realms/finance_dashboard/protocol/openid-connect/token';
+  private readonly CLIENT_AUTH = 'ZGFzaGJvYXJkX2NsaWVudDpSYndkRDVDellZSk9jd3lldGpPM0hxTlNKOTlobjF5Tw==';
 
-  // Login method using mock API
+  constructor(private http: HttpClient, private router: Router) {}
+
   onLogin(): void {
-    const loginPayload = { email: this.email, password: this.password };
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Please enter both email and password.';
+      return;
+    }
 
-    // Make HTTP POST request to the mock API
-    this.http
-      .post<{ success: boolean; token?: string; message?: string }>(
-        'http://localhost:4200/login', // Mock API endpoint
-        loginPayload
-      )
-      .subscribe({
-        next: (response) => {
-          if (response.success && response.token) {
-            // Store token in localStorage for authentication
-            localStorage.setItem('authToken', response.token);
-            this.errorMessage = '';
-            this.router.navigate(['/sidebar']); // Navigate to the protected route
+    // Prepare headers
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${this.CLIENT_AUTH}`,
+    });
+
+    const body = new HttpParams()
+      .set('username', this.email)
+      .set('password', this.password)
+      .set('grant_type', 'password');
+
+    this.http.post<any>(this.TOKEN_URL, body.toString(), { headers }).subscribe({
+      next: (response) => {
+        if (response.access_token) {
+          if (this.rememberMe) {
+            localStorage.setItem('access_token', response.access_token);
+            if (response.refresh_token) {
+              localStorage.setItem('refresh_token', response.refresh_token);
+            }
           } else {
-            this.errorMessage = response.message || 'Invalid email or password';
+            sessionStorage.setItem('access_token', response.access_token);
+            if (response.refresh_token) {
+              sessionStorage.setItem('refresh_token', response.refresh_token);
+            }
           }
-        },
-        error: (err) => {
-          console.error('Login failed:', err);
-          this.errorMessage = 'Unable to login. Please try again later.';
-        },
-      });
+
+          this.errorMessage = '';
+          this.router.navigate(['/sidebar']);
+        } else {
+          this.errorMessage = 'Failed to retrieve access token. Please try again.';
+        }
+      },
+      error: (err) => {
+        console.error('Login failed:', err);
+        this.errorMessage = 'Invalid username or password. Please try again.';
+      },
+    });
   }
 }
 

@@ -5,33 +5,24 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    const token = localStorage.getItem('authToken');
-    if (!token) {
-      this.router.navigate(['/login']);
+    const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
+    if (token) {
+      return of(true); // Allow access if token exists
+    } else {
+      this.router.navigate(['/login']); // Redirect to login if no token
       return of(false);
     }
-
-    // Verify token using the mock API
-    return this.http.post('/api/auth/verify', { token }).pipe(
-      map(() => true),
-      catchError(() => {
-        this.router.navigate(['/login']);
-        return of(false);
-      })
-    );
   }
 }

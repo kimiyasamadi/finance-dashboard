@@ -6,7 +6,6 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MockInterceptor } from './mock.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,10 +14,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()), // Provide the HttpClient
     provideClientHydration(),
     provideAnimations(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MockInterceptor,
-      multi: true,
-    },
   ],
 };

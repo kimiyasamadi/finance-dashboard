@@ -1,9 +1,0 @@
-{
-  "users": [
-    {
-      "email": "samadi@gmail.com",
-      "password": "Aa1234567",
-      "token": "mockAuthToken"
-    }
-  ]
-}
